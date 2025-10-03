@@ -1,0 +1,275 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+    <title>Portfolio - Carlos Daubar</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fuente Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f8faff;
+            color: #2c2c2c;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: #4a2c91;
+            color: #fff;
+            padding: 0.8em 1.5em;
+            display: flex;
+            justify-content: center; /* 🔹 centramos el contenido */
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+        }
+        nav .logo {
+            position: absolute; /* 🔹 lo fijamos a la izquierda */
+            left: 20px;
+            font-size: 1.3em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5em;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #ffce54;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            position: absolute;
+            right: 20px; /* 🔹 el ícono hamburguesa se mantiene a la derecha */
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: #4a2c91;
+                flex-direction: column;
+                width: 220px;
+                display: none;
+                padding: 1em;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* HEADER */
+        #header {
+            background: linear-gradient(135deg, #4a2c91, #0077b6);
+            color: #fff;
+            text-align: center;
+            padding: 6em 1em 4em;
+            margin-top: 60px;
+        }
+        #header h1 {
+            font-size: 3em;
+            margin: 0.3em 0;
+            font-weight: 700;
+        }
+        #header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+        .profile-pic {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 6px solid #fff;
+            margin-bottom: 1em;
+            transition: transform 0.3s;
+        }
+        .profile-pic:hover {
+            transform: scale(1.08);
+        }
+
+        /* SECCIONES */
+        section.main {
+            padding: 3em 1em;
+        }
+        .card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 2em;
+            margin: 0 auto 2.5em;
+            max-width: 950px;
+            transition: transform 0.25s, box-shadow 0.25s;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .card h2 {
+            color: #4a2c91;
+            margin-bottom: 0.8em;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* PROYECTOS */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5em;
+            margin-top: 1.5em;
+        }
+        .project-card {
+            background: #f9f9ff;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 1.5em;
+            text-align: center;
+            transition: transform 0.25s;
+        }
+        .project-card:hover {
+            transform: scale(1.03);
+            border-color: #4a2c91;
+        }
+        .project-card h3 {
+            color: #0077b6;
+            margin-bottom: 0.6em;
+        }
+        .project-card p {
+            font-size: 0.95em;
+        }
+        .project-card a {
+            display: inline-block;
+            margin-top: 0.8em;
+            padding: 0.5em 1em;
+            background: #4a2c91;
+            color: #fff;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+        .project-card a:hover {
+            background: #0077b6;
+        }
+
+        /* FOOTER */
+        #footer {
+            background-color: #4a2c91;
+            color: #fff;
+            text-align: center;
+            padding: 2em 1em;
+        }
+        #footer h2 {
+            margin-bottom: 1em;
+        }
+        #footer .icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5em;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #footer .icons a {
+            font-size: 1.6em;
+            color: #fff;
+            transition: color 0.3s;
+        }
+        #footer .icons a:hover {
+            color: #ffce54;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Portfolio</div>
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        <ul>
+            <li><a href="#header">Inicio</a></li>
+            <li><a href="#proyectos">Proyectos</a></li>
+            <li><a href="#footer">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <section id="header">
+        <img src="imagenes/foto2.png" alt="Foto de perfil" class="profile-pic" />
+        <h1>Portfolio</h1>
+        <p>Mis trabajos y proyectos destacados</p>
+    </section>
+
+    <!-- Proyectos -->
+    <section id="proyectos" class="main">
+        <div class="card">
+            <h2>Proyectos</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <h3>Proyecto 1</h3>
+                    <p>Descripción breve del proyecto. Tecnologías usadas y objetivo.</p>
+                    <a href="#">Ver más</a>
+                </div>
+                <div class="project-card">
+                    <h3>Proyecto 2</h3>
+                    <p>Descripción breve del proyecto. Tecnologías usadas y objetivo.</p>
+                    <a href="#">Ver más</a>
+                </div>
+                <div class="project-card">
+                    <h3>Proyecto 3</h3>
+                    <p>Descripción breve del proyecto. Tecnologías usadas y objetivo.</p>
+                    <a href="#">Ver más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section id="footer">
+        <h2>Contacto</h2>
+        <p>Si te interesa colaborar o ver más de mi trabajo, contáctame en mis redes:</p>
+        <ul class="icons">
+            <li><a href="https://twitter.com/carlosdaubar" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://instagram.com/carlosdaubar" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://tiktok.com/@carlosdaubar" target="_blank"><i class="fab fa-tiktok"></i></a></li>
+        </ul>
+    </section>
+
+    <!-- Script para el menú hamburguesa -->
+    <script>
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector("nav ul");
+
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    </script>
+</body>
+</html>

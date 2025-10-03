@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+    <title>CV - Carlos Daubar</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Fuente Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Librería AOS (animaciones al hacer scroll) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+
+    <style>
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26,42,64,0.95);
+            color: #fff;
+            padding: 0.8em 1.5em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        nav .logo {
+            position: absolute;
+            left: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5em;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: #f0ad4e;
+            border-bottom: 2px solid #f0ad4e;
+            padding-bottom: 3px;
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+        }
+        @media (max-width: 768px) {
+            nav ul {
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: #1a2a40;
+                flex-direction: column;
+                width: 220px;
+                display: none;
+                padding: 1em;
+            }
+            nav ul.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* HEADER */
+        #header {
+            background: linear-gradient(135deg, #1a2a40, #304a70);
+            color: #fff;
+            text-align: center;
+            padding: 6em 1em 4em;
+            margin-top: 60px;
+        }
+        #header h1 { font-size: 2.8em; margin: 0.3em 0; font-weight: 700; }
+        #header p { font-size: 1.2em; opacity: 0.9; }
+        .profile-pic {
+            width: 180px; height: 180px;
+            object-fit: cover; border-radius: 50%;
+            border: 5px solid #fff; margin-bottom: 1em;
+            transition: transform 0.3s;
+        }
+        .profile-pic:hover { transform: scale(1.05); }
+
+        /* SOCIAL ICONS */
+        .social-icons {
+            margin-top: 1.2em;
+            display: flex; justify-content: center; gap: 1em;
+        }
+        .social-icons a {
+            display: flex; align-items: center; justify-content: center;
+            width: 45px; height: 45px; border-radius: 50%;
+            font-size: 1.4em; color: #fff;
+            transition: all 0.3s ease; text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .social-icons a.twitter { background: #1DA1F2; }
+        .social-icons a.instagram { 
+            background: radial-gradient(circle at 30% 30%, #fdf497 0%, #fd5949 45%, #d6249f 70%, #285AEB 100%);
+        }
+        .social-icons a.tiktok { background: #010101; }
+        .social-icons a:hover { transform: translateY(-3px) scale(1.1); }
+
+        /* CARDS */
+        section.main { padding: 3em 1em; }
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 2em;
+            margin: 0 auto 2em;
+            max-width: 850px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 6px 18px rgba(0,0,0,0.15); }
+        .card h2 { color: #1a2a40; margin-bottom: 0.8em; text-align: center; font-weight: 600; }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            margin: 2em auto;
+            padding-left: 40px;
+            max-width: 700px;
+            border-left: 3px solid #1a2a40;
+        }
+        .timeline-item {
+            margin-bottom: 2em;
+            position: relative;
+            padding-left: 30px; 
+        }
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 0;   
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            background: #f0ad4e;
+            border-radius: 50%;
+            border: 3px solid #1a2a40;
+        }
+        .timeline-item h3 { margin: 0; color: #1a2a40; }
+        .timeline-item p { margin: 0.5em 0 0; }
+
+        /* SKILLS */
+        .skill {
+            margin: 1em 0;
+        }
+        .skill-name { font-weight: 500; margin-bottom: 5px; }
+        .skill-bar {
+            background: #ddd;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 12px;
+        }
+        .skill-bar div {
+            height: 100%;
+            background: #1a2a40;
+            text-align: right;
+            padding-right: 5px;
+            line-height: 12px;
+            color: #fff;
+            font-size: 0.8em;
+            border-radius: 20px;
+        }
+
+        /* FOOTER */
+        #footer {
+            background-color: #1a2a40;
+            color: #fff;
+            text-align: center;
+            padding: 2em 1em;
+        }
+        #footer h2 { margin-bottom: 1em; }
+        #footer .icons {
+            display: flex; justify-content: center; gap: 1.5em;
+            list-style: none; padding: 0; margin: 0;
+        }
+        #footer .icons a {
+            font-size: 1.6em; color: #fff; transition: color 0.3s;
+        }
+        #footer .icons a:hover { color: #f0ad4e; }
+
+        /* BOTÓN VOLVER ARRIBA */
+        #btnTop {
+            position: fixed;
+            bottom: 20px; right: 20px;
+            background: #f0ad4e; color: #1a2a40;
+            border: none; padding: 10px 15px;
+            border-radius: 50%; cursor: pointer;
+            font-size: 1.2em; display: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        #btnTop:hover { background: #ffce54; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Carlos Daubar.</div>
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        <ul>
+            <li><a href="#header" class="active">Inicio</a></li>
+            <li><a href="#sobre-mi">Sobre mí</a></li>
+            <li><a href="#experiencia">Experiencia</a></li>
+            <li><a href="#formacion">Formación</a></li>
+            <li><a href="#habilidades">Habilidades</a></li>
+            <li><a href="#footer">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header -->
+    <section id="header">
+        <img src="images/foto2.png" alt="Foto de perfil" class="profile-pic" data-aos="zoom-in" />
+        <h1 data-aos="fade-up">Carlos Daubar</h1>
+        <p data-aos="fade-up" data-aos-delay="200">Desarrollador de Aplicaciones Web</p>
+        <div class="social-icons" data-aos="fade-up" data-aos-delay="400">
+            <a href="https://twitter.com/carlosdaubar" target="_blank" class="twitter"><i class="fab fa-twitter"></i></a>
+            <a href="https://instagram.com/carlosdaubar" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://tiktok.com/@carlosdaubar" target="_blank" class="tiktok"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </section>
+
+    <!-- Sobre mí -->
+    <section id="sobre-mi" class="main">
+        <div class="card" data-aos="fade-up">
+            <h2>Sobre mí</h2>
+            <p style="text-align: center;">Soy un trabajador ambicioso, emprendedor y apasionado por la tecnología y la innovación.</p>
+        </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section id="experiencia" class="main">
+        <div class="card" data-aos="fade-up">
+            <h2>Experiencia Profesional</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>CEO - Daubar Studio</h3>
+                    <p>Marketing Digital y Desarrollo Web</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Desarrollador Freelance</h3>
+                    <p>Proyectos personales y colaboraciones</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formación -->
+    <section id="formacion" class="main">
+        <div class="card" data-aos="fade-up">
+            <h2>Formación Académica</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Grado Superior en ASIR</h3>
+                </div>
+                <div class="timeline-item">
+                    <h3>Certificación Avanzada en Photoshop</h3>
+                </div>
+                <div class="timeline-item">
+                    <h3>Certificación en SEO y Posicionamiento Web</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Habilidades -->
+    <section id="habilidades" class="main">
+        <div class="card" data-aos="fade-up">
+            <h2>Habilidades</h2>
+            <div class="skill">
+                <div class="skill-name">HTML</div>
+                <div class="skill-bar"><div style="width: 90%">90%</div></div>
+            </div>
+            <div class="skill">
+                <div class="skill-name">Java</div>
+                <div class="skill-bar"><div style="width: 75%">75%</div></div>
+            </div>
+            <div class="skill">
+                <div class="skill-name">PHP</div>
+                <div class="skill-bar"><div style="width: 70%">70%</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section id="footer">
+        <h2>Contacto</h2>
+        <p>Puedes encontrarme en mis redes sociales o escribirme directamente.</p>
+        <ul class="icons">
+            <li><a href="https://twitter.com/carlosdaubar" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://instagram.com/carlosdaubar" target="_blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://tiktok.com/@carlosdaubar" target="_blank"><i class="fab fa-tiktok"></i></a></li>
+        </ul>
+    </section>
+
+    <!-- Botón volver arriba -->
+    <button id="btnTop">⬆️</button>
+
+    <!-- JS -->
+    <script>
+        // Menú hamburguesa
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector("nav ul");
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+
+        // Resaltar sección activa
+        const sections = document.querySelectorAll("section");
+        const navItems = document.querySelectorAll("nav ul li a");
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+            });
+            navItems.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === "#" + current) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+        // Botón volver arriba
+        const btnTop = document.getElementById("btnTop");
+        window.onscroll = () => {
+            btnTop.style.display = window.scrollY > 300 ? "block" : "none";
+        };
+        btnTop.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+    </script>
+
+    <!-- AOS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
+</body>
+</html>
